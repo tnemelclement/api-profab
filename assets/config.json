@@ -3,7 +3,7 @@
   "port": 8082,
   "db": {
     "host": "83.229.85.83",
-    "database": "pofab",
+    "database": "profab",
     "user": "root",
     "password": "password",
     "port" : ""
