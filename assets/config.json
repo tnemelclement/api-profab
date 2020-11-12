@@ -2,11 +2,11 @@
   "rootAPI": "/api/v1/",
   "port": 8082,
   "db": {
-    "host": "83.229.85.83",
+    "host": "127.0.0.1",
     "database": "profab",
     "user": "root",
     "password": "password",
-    "port" : ""
+    "port" : "3306"
   },
   "errors" : {
     "wrongID": "It's a wrong id",
