@@ -2,11 +2,11 @@
   "rootAPI": "/api/v1/",
   "port": 8082,
   "db": {
-    "host": "localhost",
-    "database": "pofab-france",
+    "host": "83.229.85.83",
+    "database": "pofab",
     "user": "root",
-    "password": "root",
-    "port" : "8889"
+    "password": "password",
+    "port" : ""
   },
   "errors" : {
     "wrongID": "It's a wrong id",
