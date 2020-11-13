@@ -15,7 +15,7 @@ let Gonflables = class {
 
         return new Promise((next) => {
 
-            db.query('SELECT * FROM gonflables WHERE ref = ?', [id])
+            db.query('SELECT * FROM jeuxEnStock WHERE id = ?', [id])
                 .then((result) => {
                     if (result[0] != undefined)
                         next(result[0])
@@ -52,13 +52,13 @@ let Gonflables = class {
         return new Promise((next) => {
 
             if (max != undefined && max > 0) {
-                db.query('SELECT * FROM gonflables LIMIT 0, ?', [parseInt(max)])
+                db.query('SELECT * FROM jeuxEnStock LIMIT 0, ?', [parseInt(max)])
                     .then((result) => next(result))
                     .catch((err) => next(err))
             } else if (max != undefined) {
                 next(new Error('Wrong max value'))
             } else {
-                db.query('SELECT * FROM gonflables')
+                db.query('SELECT * FROM jeuxEnStock')
                     .then((result) => next(result))
                     .catch((err) => next(err))
 
@@ -178,4 +178,4 @@ let Gonflables = class {
 
     }
 
-}
+} 
