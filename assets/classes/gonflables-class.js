@@ -38,7 +38,7 @@ let Gonflables = class {
         })
     }
 
-    /* Envoie tous les gonflables (avec un maximum optionnel)
+    // Envoie tous les gonflables (avec un maximum optionnel)
     static getAllGonf(max) {
         return new Promise((next) => {
             if (max != undefined && max > 0) {
@@ -54,7 +54,7 @@ let Gonflables = class {
             }
         })
     }
-*/
+
     
 
     // Ajoute un membre avec son nom comme paramètre
