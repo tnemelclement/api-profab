@@ -12,9 +12,7 @@ let Gonflables = class {
 
     // Envoie un membre via son ID
     static getByID(id) {
-
         return new Promise((next) => {
-
             db.query('SELECT * FROM jeuxEnStock WHERE id = ?', [id])
                 .then((result) => {
                     if (result[0] != undefined)
@@ -23,16 +21,12 @@ let Gonflables = class {
                         next(new Error(config.errors.wrongID))
                 })
                 .catch((err) => next(err))
-
         })
-
     }
 
      // Envoie les gonflables d'une categorie
      static getByCategorie(id) {
-
         return new Promise((next) => {
-
             db.query('SELECT _ref, img1, prix, ref FROM gonflables WHERE categorie = ?', [id])
                 .then((result) => {
                     if (result[0] != undefined)
@@ -41,16 +35,12 @@ let Gonflables = class {
                         next(new Error(config.errors.wrongID))
                 })
                 .catch((err) => next(err))
-
         })
-
     }
 
     // Envoie tous les gonflables (avec un maximum optionnel)
     static getAllGonf(max) {
-
         return new Promise((next) => {
-
             if (max != undefined && max > 0) {
                 db.query('SELECT * FROM jeuxEnStock LIMIT 0, ?', [parseInt(max)])
                     .then((result) => next(result))
@@ -61,41 +51,17 @@ let Gonflables = class {
                 db.query('SELECT * FROM jeuxEnStock')
                     .then((result) => next(result))
                     .catch((err) => next(err))
-
             }
         })
-
     }
 
-    static getCategorie(numCat) {
-
-        return new Promise((next) => {
-
-            if (numCat != undefined && numCat > 0) {
-                db.query('SELECT * FROM gonflables WHERE categorie = ?', [parseInt(numCat)])
-                    .then((result) => next(result))
-                    .catch((err) => next(err))
-            } else if (numCat != undefined) {
-                next(new Error('Wrong numCat value'))
-            } else {
-                db.query('SELECT * FROM gonflables')
-                    .then((result) => next(result))
-                    .catch((err) => next(err))
-
-            }
-        })
-
-    }
+    
 
     // Ajoute un membre avec son nom comme paramètre
     static add(name) {
-
         return new Promise((next) => {
-
             if (name != undefined && name.trim() != '') {
-
                 name = name.trim()
-
                 db.query('SELECT * FROM members WHERE name = ?', [name])
                     .then((result) => {
                         if (result[0] != undefined) {
@@ -114,24 +80,17 @@ let Gonflables = class {
                         })
                     })
                     .catch((err) => next(err))
-
             } else {
                 next(new Error(config.errors.noNameValue))
             }
-
         })
-
     }
 
     // Modifie le nom d'un membre via son ID
     static update(id, name) {
-
         return new Promise((next) => {
-
             if (name != undefined && name.trim() != '') {
-
                 name = name.trim()
-
                 db.query('SELECT * FROM members WHERE id = ?', [id])
                     .then((result) => {
                         if (result[0] != undefined) {
@@ -149,20 +108,15 @@ let Gonflables = class {
                     })
                     .then(() => next(true))
                     .catch((err) => next(err))
-
             } else {
                 next(new Error(config.errors.noNameValue))
             }
-
         })
-
     }
 
     // Supprime un membre via son ID
     static delete(id) {
-
         return new Promise((next) => {
-
             db.query('SELECT * FROM members WHERE id = ?', [id])
                 .then((result) => {
                     if (result[0] != undefined) {
@@ -173,9 +127,42 @@ let Gonflables = class {
                 })
                 .then(() => next(true))
                 .catch((err) => next(err))
-
         })
+    }
 
+
+
+    /******************* FCTs TEMPORAIRES *******************/
+
+    // Récupère un jeu En Stock
+    static getEnStockByID(id) {
+        return new Promise((next) => {
+            db.query('SELECT * FROM jeuxEnStock WHERE id = ?', [id])
+                .then((result) => {
+                    if (result[0] != undefined)
+                        next(result[0])
+                    else
+                        next(new Error(config.errors.wrongID))
+                })
+                .catch((err) => next(err))
+        })
+    }
+
+    // Récupère tous les jeux en Stock
+    static getAllEnStock(max) {
+        return new Promise((next) => {
+            if (max != undefined && max > 0) {
+                db.query('SELECT * FROM jeuxEnStock LIMIT 0, ?', [parseInt(max)])
+                    .then((result) => next(result))
+                    .catch((err) => next(err))
+            } else if (max != undefined) {
+                next(new Error('Wrong max value'))
+            } else {
+                db.query('SELECT * FROM jeuxEnStock')
+                    .then((result) => next(result))
+                    .catch((err) => next(err))
+            }
+        })
     }
 
 } 

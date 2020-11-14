@@ -64,6 +64,27 @@ mysql.createConnection({
             res.json(checkAndChange(categorie))
         })
 
+
+        /********************** Fonctions Temporaires ***********************/
+
+        GonflablesRouter.route('/enstock')
+
+        .get(async (req, res) => {
+            let allGonflables = await Gonflables.getAllEnStock(req.params.max)
+            res.header("Access-Control-Allow-Origin", "*")
+            res.json(checkAndChange(allGonflables))
+            
+        })
+
+        GonflablesRouter.route('/enstock/:id')
+
+        // Récupère un membre avec son ID
+        .get(async (req, res) => {
+            let gonflable = await Gonflables.getEnStockByID(req.params.id)
+            res.header("Access-Control-Allow-Origin", "*")
+            res.json(checkAndChange(gonflable))
+        })
+
    
 
     app.use(config.rootAPI+'gonflables', GonflablesRouter)
