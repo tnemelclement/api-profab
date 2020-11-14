@@ -70,9 +70,9 @@ mysql.createConnection({
         GonflablesRouter.route('/enstock')
 
         .get(async (req, res) => {
-            let allGonflables = await Gonflables.getAllEnStock(req.params.max)
+            let gonfEnStock = await Gonflables.getAllEnStock(req.params.max)
             res.header("Access-Control-Allow-Origin", "*")
-            res.json(checkAndChange(allGonflables))
+            res.json(checkAndChange(gonfEnStock))
             
         })
 
@@ -80,9 +80,9 @@ mysql.createConnection({
 
         // Récupère un membre avec son ID
         .get(async (req, res) => {
-            let gonflable = await Gonflables.getEnStockByID(req.params.id)
+            let enstock = await Gonflables.getEnStockByID(req.params.id)
             res.header("Access-Control-Allow-Origin", "*")
-            res.json(checkAndChange(gonflable))
+            res.json(checkAndChange(enstock))
         })
 
    

@@ -134,20 +134,6 @@ let Gonflables = class {
 
     /******************* FCTs TEMPORAIRES *******************/
 
-    // Récupère un jeu En Stock
-    static getEnStockByID(id) {
-        return new Promise((next) => {
-            db.query('SELECT * FROM jeuxEnStock WHERE id = ?', [id])
-                .then((result) => {
-                    if (result[0] != undefined)
-                        next(result[0])
-                    else
-                        next(new Error(config.errors.wrongID))
-                })
-                .catch((err) => next(err))
-        })
-    }
-
     // Récupère tous les jeux en Stock
     static getAllEnStock(max) {
         return new Promise((next) => {
@@ -164,5 +150,21 @@ let Gonflables = class {
             }
         })
     }
+    
+    // Récupère un jeu En Stock
+    static getEnStockByID(id) {
+        return new Promise((next) => {
+            db.query('SELECT * FROM jeuxEnStock WHERE id = ?', [id])
+                .then((result) => {
+                    if (result[0] != undefined)
+                        next(result[0])
+                    else
+                        next(new Error(config.errors.wrongID))
+                })
+                .catch((err) => next(err))
+        })
+    }
+
+    
 
 } 
