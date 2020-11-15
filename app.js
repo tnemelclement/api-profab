@@ -67,7 +67,7 @@ mysql.createConnection({
 
         /********************** Fonctions Temporaires ***********************/
 
-        GonflablesRouter.route('/enstock')
+        GonflablesRouter.route('/enstock/')
 
         .get(async (req, res) => {
             let gonfEnStock = await Gonflables.getAllEnStock(req.params.tri)
