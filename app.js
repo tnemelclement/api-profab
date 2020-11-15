@@ -34,7 +34,7 @@ mysql.createConnection({
             
         })
 
-    GonflablesRouter.route('/:id')
+    GonflablesRouter.route('/byid/:id')
 
         // Récupère un membre avec son ID
         .get(async (req, res) => {
