@@ -135,14 +135,18 @@ let Gonflables = class {
     /******************* FCTs TEMPORAIRES *******************/
 
     // Récupère tous les jeux en Stock
-    static getAllEnStock(max) {
+    static getAllEnStock(tri) {
         return new Promise((next) => {
-            if (max != undefined && max > 0) {
-                db.query('SELECT * FROM jeuxEnStock LIMIT 0, ?', [parseInt(max)])
+            if (tri == 1) {
+                db.query('SELECT * FROM jeuxEnStock ORDER BY prix_ht ASC')
                     .then((result) => next(result))
                     .catch((err) => next(err))
-            } else if (max != undefined) {
-                next(new Error('Wrong max value'))
+            } else if (tri == 2) {
+                db.query('SELECT * FROM jeuxEnStock ORDER BY prix_ht DESC')
+                    .then((result) => next(result))
+                    .catch((err) => next(err))
+            } else if (tri > 2 || tri < 0) {
+                next(new Error('Wrong value : croissant = 1 | decroissant = 2'))
             } else {
                 db.query('SELECT * FROM jeuxEnStock')
                     .then((result) => next(result))

@@ -70,7 +70,7 @@ mysql.createConnection({
         GonflablesRouter.route('/enstock')
 
         .get(async (req, res) => {
-            let gonfEnStock = await Gonflables.getAllEnStock(req.params.max)
+            let gonfEnStock = await Gonflables.getAllEnStock(req.params.tri)
             res.header("Access-Control-Allow-Origin", "*")
             res.json(checkAndChange(gonfEnStock))
             
