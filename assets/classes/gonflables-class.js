@@ -163,7 +163,7 @@ let Gonflables = class {
                     if (result[0] != undefined)
                         next(result[0])
                     else
-                        next(new Error(config.errors.wrongID))
+                        next(new Error(config.errors.wrongID + "ahhhhh"))
                 })
                 .catch((err) => next(err))
         })
