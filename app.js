@@ -91,6 +91,8 @@ mysql.createConnection({
         ContactRouter.route('/')
         // Ajoute un membre avec son nom
         .post(async (req, res) => {
+            console.log("Test APP infos : "+ req.body.name)
+            req.header("Access-Control-Allow-Origin", "*")
             let addForm = await Contact.add(req.body)
             res.header("Access-Control-Allow-Origin", "*")
             res.json(checkAndChange(addForm))

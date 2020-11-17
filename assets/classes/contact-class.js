@@ -42,6 +42,8 @@ let Contact = class {
 
      // Ajoute un membre avec son nom comme paramètre
    static newMessage(infos) {
+
+    console.log("Test infos : "+ infos.name)
     return new Promise((next) => {
         db.query('INSERT INTO contact (nom, prenom, societe, mail, tel, message) VALUES(?,?,?,?,?,?)', [infos.name, infos.firstname, infos.society, infos.email, infos.phone, infos.message])
             .then(() => {
@@ -55,5 +57,5 @@ let Contact = class {
             .catch((err) => next(err))
         })
     }
-    
+
 }
