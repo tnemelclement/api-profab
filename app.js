@@ -21,6 +21,9 @@ mysql.createConnection({
     let GonflablesRouter = express.Router()
     let Gonflables = require('./assets/classes/gonflables-class')(db, config)
 
+    let ContactRouter = express.Router()
+    let Contact = require('./assets/classes/contact-class')(db, config)
+
     app.use(morgan)
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -85,9 +88,17 @@ mysql.createConnection({
             res.json(checkAndChange(enstock))
         })
 
+
+        // Ajoute un membre avec son nom
+        .post(async (req, res) => {
+            let addForm = await Contact.add(req.body)
+            res.json(checkAndChange(addForm))
+        })
+
    
 
     app.use(config.rootAPI+'gonflables', GonflablesRouter)
+    app.use(config.rootAPI+'contact', ContactRouter)
 
     app.listen(config.port, () => console.log('Started on port '+config.port))
 
