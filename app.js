@@ -88,10 +88,11 @@ mysql.createConnection({
             res.json(checkAndChange(enstock))
         })
 
-
+        ContactRouter.route('/')
         // Ajoute un membre avec son nom
         .post(async (req, res) => {
             let addForm = await Contact.add(req.body)
+            res.header("Access-Control-Allow-Origin", "*")
             res.json(checkAndChange(addForm))
         })
 
