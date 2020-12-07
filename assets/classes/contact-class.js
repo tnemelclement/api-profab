@@ -65,7 +65,7 @@ let Contact = class {
     static newMessage(nom, prenom, societe, mail, tel, message) {
 
         return new Promise((next) => {
-            db.query('INSERT INTO contact (nom, prenom, societe, mail, tel, message) VALUES ("?","?","?","?","?","?")', [nom, prenom, societe, mail, parseInt(tel), message])
+            db.query('INSERT INTO contact (nom, prenom, societe, mail, tel, message) VALUES (?,?,?,?,?,?)', [nom, prenom, societe, mail, parseInt(tel), message])
                     .then((result) => next(result))
                     .catch((err) => next(err))
         })
