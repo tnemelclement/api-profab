@@ -97,7 +97,13 @@ mysql.createConnection({
             res.json(checkAndChange(message))
         })
 
-   
+        ContactRouter.route('/getAll')
+        // Ajoute un membre avec son nom
+        .get(async (req, res) => {
+            let entrees = await Contact.getContact()
+            res.header("Access-Control-Allow-Origin", "*")
+            res.json(checkAndChange(entrees))
+        })
 
     app.use(config.rootAPI+'gonflables', GonflablesRouter)
     app.use(config.rootAPI+'contact', ContactRouter)
