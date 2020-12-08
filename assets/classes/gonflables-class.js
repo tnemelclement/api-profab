@@ -27,7 +27,7 @@ let Gonflables = class {
      // Envoie les gonflables d'une categorie
      static getByCategorie(id) {
         return new Promise((next) => {
-            db.query('SELECT * FROM gonflables WHERE categorie = ? GROUP BY ref', [parseInt(id)])
+            db.query('SELECT * FROM gonflables WHERE categorie = ?', [parseInt(id)])
                 .then((result) => {
                     if (result[0] != undefined)
                         next(result)
