@@ -158,7 +158,7 @@ let Gonflables = class {
     // Récupère un jeu En Stock
     static getEnStockByID(id) {
         return new Promise((next) => {
-            db.query('SELECT * FROM jeuxEnStock WHERE _ref = ?', [id])
+            db.query('SELECT * FROM jeuxEnStock WHERE ref = ?', [id])
                 .then((result) => {
                     if (result[0] != undefined)
                         next(result[0])
