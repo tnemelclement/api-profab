@@ -13,7 +13,7 @@ let Gonflables = class {
     // Envoie un membre via son ID
     static getByID(id) {
         return new Promise((next) => {
-            db.query('SELECT * FROM jeuxEnStock WHERE id = ?', [id])
+            db.query('SELECT * FROM gonflables WHERE id = ?', [id])
                 .then((result) => {
                     if (result[0] != undefined)
                         next(result[0])
