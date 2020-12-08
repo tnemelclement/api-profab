@@ -29,16 +29,13 @@ mysql.createConnection({
     app.use(bodyParser.urlencoded({ extended: true }));
 
     GonflablesRouter.route('/')
-
         .get(async (req, res) => {
             let allGonflables = await Gonflables.getAllGonf(req.params.max)
             res.header("Access-Control-Allow-Origin", "*")
             res.json(checkAndChange(allGonflables))
-            
         })
 
     GonflablesRouter.route('/byid/:id')
-
         // Récupère un membre avec son ID
         .get(async (req, res) => {
             let gonflable = await Gonflables.getByID(req.params.id)
@@ -46,20 +43,7 @@ mysql.createConnection({
             res.json(checkAndChange(gonflable))
         })
 
-        /* Modifie un membre avec ID
-        .put(async (req, res) => {
-            let updateMember = await Members.update(req.params.id, req.body.name)
-            res.json(checkAndChange(updateMember))
-        })
-
-        // Supprime un membre avec ID
-        .delete(async (req, res) => {
-            let deleteMember = await Members.delete(req.params.id)
-            res.json(checkAndChange(deleteMember))
-        })*/
-
         GonflablesRouter.route('/categorie/:id')
-
         // Récupère un membre avec son ID
         .get(async (req, res) => {
             let categorie = await Gonflables.getByCategorie(req.params.id)
