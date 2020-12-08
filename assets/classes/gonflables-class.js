@@ -41,7 +41,7 @@ let Gonflables = class {
     // Récupère une sous categorie
     static getSousCat(id) {
         return new Promise((next) => {
-            db.query('SELECT * FROM gonflables WHERE ref = ?', [parseInt(id)])
+            db.query('SELECT * FROM gonflables WHERE ref = ?', [id])
                 .then((result) => {
                     if (result[0] != undefined)
                         next(result[0])
