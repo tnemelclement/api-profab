@@ -38,6 +38,20 @@ let Gonflables = class {
         })
     }
 
+    // Récupère une sous categorie
+    static getSousCat(id) {
+        return new Promise((next) => {
+            db.query('SELECT * FROM gonflables WHERE ref = ?', [parseInt(id)])
+                .then((result) => {
+                    if (result[0] != undefined)
+                        next(result[0])
+                    else
+                        next(new Error(config.errors.wrongID))
+                })
+                .catch((err) => next(err))
+        })
+    }
+
     // Envoie tous les gonflables (avec un maximum optionnel)
     static getAllGonf(max) {
         return new Promise((next) => {

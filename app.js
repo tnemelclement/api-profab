@@ -73,6 +73,15 @@ mysql.createConnection({
             res.json(checkAndChange(enstock))
         })
 
+        GonflablesRouter.route('/souscategorie/:id')
+
+        // Récupère un membre avec son ID
+        .get(async (req, res) => {
+            let souscat = await Gonflables.getSousCat(req.params.id)
+            res.header("Access-Control-Allow-Origin", "*")
+            res.json(checkAndChange(souscat))
+        })
+
         ContactRouter.route('/new')
         // Ajoute un membre avec son nom
         .get(async (req, res) => {
